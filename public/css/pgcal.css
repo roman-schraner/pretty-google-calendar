@@ -21,8 +21,14 @@
 /* Allows wrapping of titles */
 .fc-event-title {
   white-space: normal;
+  /* Prevent excessive line height (multi column titles) */
+  line-height: normal;
 }
 
+.fc-event-main {
+  padding-left: 4px;
+  padding-right: 4px;
+}
 .fc-h-event-private {
   background-color: #ffffff !important;
 }
