@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         eventData.extendedProps.isPrivate = false;
         eventData.backgroundColor = 'var(--nv-primary-accent, var(--fc-event-bg-color,#3788d8))';
+        // Open all links in Google Calendar event description in new Tab if not specified otherwise in Google Calendar.
+        var description = eventData.description;
+        eventData.description = description.replaceAll('<a href', '<a target=\"_blank\" href');
       }
 
       eventData.borderColor = 'var(--nv-primary-accent, var(--fc-event-bg-color,#3788d8))';
