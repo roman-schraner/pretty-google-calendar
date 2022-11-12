@@ -28,9 +28,11 @@ function pgcal_tippyRender(info) {
       </div>`;
     }
 
-  toolContent += `<div class="toolloc">${pgcal_mapify(info.event.extendedProps.location)} ${pgcal_linkify(
-    info.event.url
-  )}</div>`;
+  if (pgcalSettings["tooltip_show_buttons"] === "true") {
+    toolContent += `<div class="toolloc">${pgcal_mapify(info.event.extendedProps.location)} ${pgcal_linkify(
+      info.event.url
+    )}</div>`;
+  }
 
   tippy(info.el, {
     trigger: "click",

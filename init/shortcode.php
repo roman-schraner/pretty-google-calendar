@@ -21,6 +21,7 @@ function pgcal_shortcode($atts) {
 			'enforce_listview_on_mobile' => "true",
 			'show_today_button'          => "true",
 			'show_title'                 => "true",
+			'tooltip_show_buttons'       => "true",
 		),
 		$atts
 	);
