@@ -6,3 +6,37 @@
 .tippy-content {
   padding: 20px;
 }
+
+.tippy-title {
+  margin-bottom: 0px;
+}
+
+.tippy-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tippy-icon-child {
+  padding-left: 0;
+  padding-right: 5px;
+  text-align: center;
+  width: 25px;
+  opacity: 0.7;
+}
+
+.tippy-text-child {
+  padding-left: 5px;
+  padding-right: 0;
+}
+
+.tippy-event-dot {
+  display: inline-block;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  border: 5px solid var(--nv-primary-accent, var(--fc-event-border-color, #3788d8));
+  border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--nv-primary-accent, var(--fc-event-border-color, #3788d8));
+  border-radius: 5px;
+  border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
+}

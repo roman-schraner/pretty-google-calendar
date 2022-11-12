@@ -4,9 +4,21 @@ function pgcal_tippyRender(info) {
   const timeString = info.event.allDay ? "All Day" : new Date(info.event.startStr).toLocaleTimeString();
 
   let toolContent = `
-		<h2> ${info.event.title} </h2>
-		<p> ${timeString}</p>`;
-  toolContent += pgcal_breakify(info.event.extendedProps.description);
+    <div class="tippy-container">
+      <div class="tippy-icon-child"><span class="tippy-event-dot"></span></div>
+      <div class="tippy-text-child">
+        <h4 class="tippy-title"> ${info.event.title} </h4>
+        ${timeString}
+      </div>
+    </div>
+		`;
+    if (info.event.extendedProps.description !== undefined) {
+      toolContent += `
+      <div class="tippy-container">
+        <div class="tippy-icon-child"><span class="dashicons dashicons-text"></span></div>
+        <div class="tippy-text-child">${pgcal_breakify(info.event.extendedProps.description)}</div>
+      </div>`;
+    }
 
   toolContent += `<div class="toolloc">${pgcal_mapify(info.event.extendedProps.location)} ${pgcal_linkify(
     info.event.url
