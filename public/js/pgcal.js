@@ -54,6 +54,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     timeZone: pgcalSettings["fixed_tz"], // TODO: Necessary?
 
+    eventDataTransform: function(eventData) {
+      //console.dir(eventData); // DEBUG
+      // Private Events have an 'undefined' title and description. Change to predefined value in Settings.
+      if (typeof eventData.title === 'undefined') {
+        eventData.extendedProps.isPrivate = true;
+        eventData.title = pgcalSettings["private_event_title"];
+        eventData.className = 'fc-h-event-private';
+        eventData.backgroundColor = 'white';
+        eventData.textColor = 'black';
+        if (typeof eventData.description === 'undefined') {
+          eventData.description = pgcalSettings["private_event_description"];
+        }
+      } else {
+        eventData.extendedProps.isPrivate = false;
+        eventData.backgroundColor = 'var(--nv-primary-accent, var(--fc-event-bg-color,#3788d8))';
+      }
+
+      eventData.borderColor = 'var(--nv-primary-accent, var(--fc-event-bg-color,#3788d8))';
+    },
+
     initialView: views.initial,
 
     headerToolbar: {

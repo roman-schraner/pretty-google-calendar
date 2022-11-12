@@ -105,6 +105,22 @@ class pgcalSettings {
 			'pgcal-setting-admin',
 			'pgcal-main-settings'
 		);
+
+		add_settings_field(
+			'private_event_title',
+			esc_attr__('Title for private events', 'pretty-google-calendar'),
+			array($this, 'pgcal_private_event_title_callback'), // Callback
+			'pgcal-setting-admin', // Page
+			'pgcal-main-settings' // Section
+		);
+
+		add_settings_field(
+			'private_event_description',
+			esc_attr__('Description for private events', 'pretty-google-calendar'),
+			array($this, 'pgcal_private_event_description_callback'), // Callback
+			'pgcal-setting-admin', // Page
+			'pgcal-main-settings' // Section
+		);
 	}
 
 	/**
@@ -124,6 +140,12 @@ class pgcalSettings {
 		if (isset($input['no_link']))
 			$sanitized_input['no_link'] = sanitize_text_field($input['no_link']);
 
+		if (isset($input['private_event_title']))
+			$sanitized_input['private_event_title'] = sanitize_text_field($input['private_event_title']);
+		
+		if (isset($input['private_event_description']))
+			$sanitized_input['private_event_description'] = sanitize_text_field($input['private_event_description']);
+		
 		return $sanitized_input;
 	}
 
@@ -162,6 +184,20 @@ class pgcalSettings {
 			'<input title="%s" type="checkbox" id="no_link" name="pgcal_settings[no_link]" value="yes" %s />',
 			esc_html__("Disable the link to the event on the calendar.", "pretty-google-calendar"),
 			isset($this->options['no_link']) ? 'checked' : ''
+		);
+	}
+	
+	public function pgcal_private_event_title_callback() {
+		printf(
+			'<input type="text" id="private_event_title" name="pgcal_settings[private_event_title]" value="%s" />',
+			isset($this->options['private_event_title']) ? esc_attr($this->options['private_event_title']) : ''
+		);
+	}
+
+	public function pgcal_private_event_description_callback() {
+		printf(
+			'<input type="text" id="private_event_description" name="pgcal_settings[private_event_description]" value="%s" />',
+			isset($this->options['private_event_description']) ? esc_attr($this->options['private_event_description']) : ''
 		);
 	}
 }
