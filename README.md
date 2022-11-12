@@ -1,3 +1,5 @@
+Fork from https://github.com/lbell/pretty-google-calendar with some minor adjustments for a project.
+
 # Pretty Google Calendar
 
 **Contributors:** LBell \
