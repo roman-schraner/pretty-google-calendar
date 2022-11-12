@@ -1,7 +1,15 @@
 function pgcal_tippyRender(info) {
   //   console.log(info.event); // DEBUG
 
-  const timeString = info.event.allDay ? "All Day" : new Date(info.event.startStr).toLocaleTimeString();
+  // Tippy: Show start and end date if multi Day event. If not, show date only once.
+  var dateString = "";
+  if (pgcal_isSameDay(info.event.start, info.event.end)) {
+    dateString = `${new Intl.DateTimeFormat(pgcalSettings["locale"], { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric'}).format(info.event.start)} - ${new Intl.DateTimeFormat(pgcalSettings["locale"], { hour: 'numeric', minute: 'numeric'}).format(info.event.end)}`;
+  } else {
+    dateString = `${new Intl.DateTimeFormat(pgcalSettings["locale"], { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric'}).format(info.event.start)} - ${new Intl.DateTimeFormat(pgcalSettings["locale"], { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric'}).format(info.event.end)}`;
+  }
+
+  const timeString = info.event.allDay ? "All Day" : `${dateString}`;
 
   let toolContent = `
     <div class="tippy-container">

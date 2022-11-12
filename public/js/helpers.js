@@ -150,3 +150,16 @@ function pgcal_linkify(url) {
     return `<a class="button" href="${url}" target="_blank">${buttonLabel}</a>`;
   }
 }
+
+/**
+ * Check if two dates are on the same day.
+ * 
+ * @param {Date} date1
+ * @param {Date} date2
+ * @returns boolean
+ */
+ function pgcal_isSameDay(d1, d2) {
+  return d1.getFullYear() === d2.getFullYear() &&
+    d1.getDate() === d2.getDate() &&
+    d1.getMonth() === d2.getMonth();
+}
