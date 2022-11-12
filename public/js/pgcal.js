@@ -74,6 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
         eventData.description = description.replaceAll('<a href', '<a target=\"_blank\" href');
       }
 
+      // Add Attachment to Event Description
+      if (Array.isArray(eventData.attachments)) {
+        for (const attachment of eventData.attachments) {
+          eventData.description += `<a href=\"${attachment.fileUrl}\" target=\"_blank\">${attachment.title}</a><br />`;
+          //console.dir(attachment); // DEBUG
+        }
+      }
+
       eventData.borderColor = 'var(--nv-primary-accent, var(--fc-event-bg-color,#3788d8))';
     },
 
